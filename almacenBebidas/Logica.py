@@ -11,7 +11,7 @@ class controladorBD:
    #Metodo oara crear conexion
     def conexionBD(self):
         try:
-            conexion= sqlite3.connect("C://Users//Gregorio//Documents//GitHub//POOS182//almacenBebidas")
+            conexion= sqlite3.connect("C:/Users/Gregorio/Documents/GitHub/POOS182/almacenBebidas/BDalmacenBebidas.db")
             print("Conectado a la base de datos")
             return conexion
         except sqlite3.OperationalError:
@@ -83,3 +83,13 @@ class controladorBD:
         cursor.execute("DELETE FROM TBRegistrados WHERE ID=?", (id3,))
         conx.commit()
         conx.close()
+
+    def sacaprom(self):
+        conx=self.conexionBD()
+        cursor=conx.cursor()
+        selectQry="SELECT AVG(ALL Precio) FROM Bebidas;"
+        cursor.execute(selectQry)
+
+        return cursor.fetchall()
+    
+    

@@ -8,7 +8,7 @@ import Logica as controlador
 controlador = controladorBD()
  
 def ejecutaInsert():
-    controlador.controladorBD().guardarproducto(nombre.get(),precio.get(),clasificacion.get(),marca.get())
+    controlador.guardarproducto(nombre.get(),precio.get(),clasificacion.get(),marca.get())
 
 def ejecutaselectu():
     usuario= controlador.consultarUsuario(varBus.get())
@@ -34,6 +34,9 @@ def ejecutaEdit():
 def ejecutaEliminar():
     controlador.eliminarUsuario(id3.get())
 
+def ejecutaprom():
+    datos = controlador.sacaprom()
+    messagebox.showinfo("El promedio es",datos) 
 
 ventana = tk.Tk()
 ventana.title("Crud de usuarios")
@@ -80,6 +83,7 @@ txtid = tk.Entry(pestaña2, textvariable=varBus)
 txtid.pack()
 
 btnBus = tk.Button(pestaña2, text="Buscar", command=ejecutaselectu).pack()
+btBus = tk.Button(pestaña2, text="Promedio", command=ejecutaprom).pack()
 
 subBus = tk.Label(pestaña2, text="Encontrado",fg="blue",font=("Modern",15)).pack()
 txtenc=tk.Text(pestaña2,height=5,width=52)
