@@ -1,4 +1,5 @@
-from flask import Flask                                                             
+from flask import Flask, render_template, request
+
 
 #Inicialiazacion del servidor flask
 app= Flask(__name__)
@@ -16,11 +17,17 @@ app.config['MYSQL_DB']="dbflask"
 #Ruat se compone de nombre y la funcion
 @app.route('/')
 def index():
-    return "Hola Mundo"
+    return render_template('index.html')
 
-@app.route('/guardar')
+@app.route('/guardar',methods=['POST'])
 def guardar():
-    return "Se guardo el album"
+    if request.method == 'POST':
+        titulo= request.form['txtTitulo']
+        artista= request.form['txtArtista']
+        año= request.form['txtAnio']
+        print(titulo,artista,año)
+
+    return "La info del Album se ha guardado"
 
 @app.route('/eliminar')
 def eliminar():
