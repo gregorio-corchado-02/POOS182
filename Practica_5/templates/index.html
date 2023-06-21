@@ -5,6 +5,14 @@
     
 </head>
 <body>
+    {%with mensajes=get_flashed_messages()%}
+        {% if mensajes%}
+            {%for msj in mensajes%}
+                <h3> {{msj}} </h3>
+            {%endfor%}
+        {%endif%}
+    {%endwith%}
+
 
     <br>
     <br>
@@ -15,7 +23,7 @@
 
         <input type="text" name="txtTitulo" placeholder="Escribe Titulo">
         <input type="text" name="txtArtista" placeholder="Escribe Artista">
-        <input type="number" name="txtAnio" placeholder="Escribe Año">
+        <input type="number" name="txtAño" placeholder="Escribe Año">
         <button type="submit"> Guardar </button>
         
         
