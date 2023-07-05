@@ -42,6 +42,30 @@ def guardar():
     flash('Album Agregado Correctamente bro')
     return redirect(url_for('index'))
 
+@app.route('/editar/<id>')
+def editar(id):
+    cursoeditar = mysql.connection.cursor()
+    cursoeditar.execute('select * from albums where ID=%s', (id, ))
+    consulId = cursoeditar.fetchone()
+    return render_template('EditarAlbum.html', album = consulId)
+
+
+
+@app.route('/actualizar/<id>',methods=['POST'])
+def actualizar(id):
+    if request.method == 'POST':
+        titulo= request.form['txtTitulo']
+        artista= request.form['txtArtista']
+        año= request.form['txtAño']
+        curactualizar = mysql.connection.cursor()
+        curactualizar.execute('update albums set Titulo=%s, Artista=%s, Año=%s where ID=%s', (titulo,artista,año,id))
+        mysql.connection.commit()
+
+    flash('Album Modificado Correctamente bro')
+    return redirect(url_for('index'))
+ 
+
+
 @app.route('/eliminar')
 def eliminar():
     return "Se elimino el album"
