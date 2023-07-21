@@ -1,70 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Guardar Album</title>
-    
-</head>
-<body>
+{%extends 'plantilla.html'%}
+
+{%block body%}
+
     {%with mensajes=get_flashed_messages()%}
-        {% if mensajes%}
-            {%for msj in mensajes%}
-                <h3>{{msj}}</h3>
-            {%endfor%}
-        {%endif%}
-    {%endwith%}
+            {% if mensajes%}
+                {%for msj in mensajes%}
+                    <h3>{{msj}}</h3>
+                {%endfor%}
+            {%endif%}
+        {%endwith%}
 
 
-    <br>
-    <br>
+        
 
-    <center><h1>Gestor de Album</h1></center>
+        <h1>Gestor de Album</h1>
 
-    <form action="/guardar" method="POST">
+            <div class="row">
+                <div class="col-md-5">
+                    
+                </div>
+                <div class="col-md-7"></div>
+            </div>
 
-        <input type="text" name="txtTitulo" placeholder="Escribe Titulo">
-        <input type="text" name="txtArtista" placeholder="Escribe Artista">
-        <input type="number" name="txtAño" placeholder="Escribe Año">
-        <button type="submit"> Guardar </button>
+        <form action="/guardar" method="POST">
+
+            <input type="text" name="txtTitulo" placeholder="Escribe Titulo">
+            <input type="text" name="txtArtista" placeholder="Escribe Artista">
+            <input type="number" name="txtAño" placeholder="Escribe Año">
+            <button type="submit"> Guardar </button>
+            
+            
+        </form>
+
+        
+        <h1>Albums guardados</h1>
         
         
-    </form>
 
-    <br>
-    <br>
-    <h1>Albums guardados</h1>
-    <br>
-
-    <table>
-        <thead>
-            <tr>
-                <td>ID</td>
-                <td>Nombre</td>
-                <td>Artista</td>
-                <td>Año de publicacion</td>
-
-            </tr>
-        </thead>
-        
-        
-        <tbody>
-            {%for alb in listAlbums %}
+        <table>
+            <thead>
                 <tr>
-                    <td>{{ alb.0 }}</td>
-                    <td>{{ alb.1 }}</td>
-                    <td>{{ alb.2 }}</td>
-                    <td>{{ alb.3 }}</td>
-                    <td>
-                        <a href="/editar/{{ alb.0 }}"> Editar</a>
-                        <a href="#">Eliminar</a>
+                    <td>ID</td>
+                    <td>Nombre</td>
+                    <td>Artista</td>
+                    <td>Año de publicacion</td>
 
-                    </td>
                 </tr>
-            {%endfor%}
-        </tbody>
+            </thead>
+            
+            
+            <tbody>
+                {%for alb in listAlbums %}
+                    <tr>
+                        <td>{{ alb.0 }}</td>
+                        <td>{{ alb.1 }}</td>
+                        <td>{{ alb.2 }}</td>
+                        <td>{{ alb.3 }}</td>
+                        <td>
+                            <a href="/editar/{{ alb.0 }}"> Editar</a>
+                            <a href="#">Eliminar</a>
+
+                        </td>
+                    </tr>
+                {%endfor%}
+            </tbody>
 
 
 
-    </table>
+        </table>
 
-</body>
-</html>    
+
+
+
+{%endblock%}
+
+    

@@ -70,6 +70,7 @@ def actualizar(id):
 def eliminar():
     return "Se elimino el album"
 
-#Lineas que ejecutan el servidor    
 if __name__== '__main__':
     app.run(port= 5000, debug=True)
+
+#Lineas que ejecutan el servidor    
