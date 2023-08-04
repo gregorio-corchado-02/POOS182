@@ -3,7 +3,7 @@ from flask_mysqldb import MySQL
 
 
 #Inicialiazacion del servidor flask
-app= Flask(__name__)
+app= Flask(__name__,static_folder='static')
 
 #Configuracion para base de datos
 app.config['MYSQL_HOST']="localhost"
@@ -65,10 +65,22 @@ def actualizar(id):
     return redirect(url_for('index'))
  
 
+@app.route('/eliminar/<id>')
+def eliminar(id):
+    cursoeli = mysql.connection.cursor()
+    cursoeli.execute('select * from albums where ID=%s', (id, ))
+    consulId = cursoeli.fetchone()
+    return render_template('EliminarAlbum.html', album = consulId)
 
-@app.route('/eliminar')
-def eliminar():
-    return "Se elimino el album"
+@app.route('/eliminar/<id>',methods=['POST'])
+def delate(id):
+    if request.method == 'POST':
+        curactualizar = mysql.connection.cursor()
+        curactualizar.execute('delete from albums where ID=%s', (id, ))
+        mysql.connection.commit()
+
+    flash('Album Eliminado Correctamente bro')
+    return redirect(url_for('index'))
 
 if __name__== '__main__':
     app.run(port= 5000, debug=True)

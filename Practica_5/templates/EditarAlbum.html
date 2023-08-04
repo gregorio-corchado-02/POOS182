@@ -3,16 +3,26 @@
 {%block body%}
 
     <center>
-    <br>
-    <h1>Actualizar Album</h1>
-    <br>
-    <br>
+    
+    
+    <h1 class="display-1 text-center mt-5 mb-5 text-danger" >Actualizar Album</h1>
+
     <form action="/actualizar/{{album.0}}" method="POST">
 
-        <input type="text" name="txtTitulo" value="{{ album.1 }}">
-        <input type="text" name="txtArtista" value="{{ album.2 }}">
-        <input type="number" name="txtAño" value="{{ album.3 }}">
-        <button type="submit"> Actualizar </button>
+        
+        <div class="col-md-6 mt-5 rounded p-4 shadow-sm ">
+        <div class="border rounded p-4 bg-dark text-white">    
+            <div class="mb-3"> <input class="form-control" type="text" name="txtTitulo" value="{{ album.1 }}"> </div>
+            <div class="mb-3"> <input class="form-control" type="text" name="txtArtista" value="{{ album.2 }}"> </div>
+            <div class="mb-3"> <input class="form-control" type="number" name="txtAño" value="{{ album.3 }}"> </div>
+            
+            <div class="d-grid gap-2">
+                <button type="submit" class="btn btn-outline-success"> Actualizar </button>
+            </div>
+            
+            
+        </div>
+        </div>
         
         
     </form>
